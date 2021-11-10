@@ -24,9 +24,9 @@ function Form(props) {
         <form className='form-container' onSubmit={onSubmit}>
             <div className='form-group-submit'>
                 <h2>Become a User</h2>
-                <button disabled={disabled}>Register</button>
                 <div className='errors'>
-                    <div>{errors.name}</div>
+                    <div>{errors.first_name}</div>
+                    <div>{errors.last_name}</div>
                     <div>{errors.email}</div>
                     <div>{errors.password}</div>
                     <div>{errors.terms}</div>
@@ -34,11 +34,19 @@ function Form(props) {
             </div>
             <div className='form-group-inputs'>
                 <h4>General Information</h4>
-                <label>Name:
+                <label>First Name:
                     <input
-                        values={values.name}
+                        values={values.first_name}
                         onChange={onChange}
-                        name='name'
+                        name='first_name'
+                        type='text'
+                    />
+                </label>
+                <label>Last Name:
+                    <input
+                        values={values.last_name}
+                        onChange={onChange}
+                        name='last_name'
                         type='text'
                     />
                 </label>
@@ -66,6 +74,8 @@ function Form(props) {
                         checked={values.terms}
                     />
                 </label>
+                <br></br>
+                <button disabled={disabled}>Register</button>
             </div>
         </form>
     )

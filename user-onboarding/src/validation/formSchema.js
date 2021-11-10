@@ -1,9 +1,14 @@
 import * as yup from 'yup';
 
 const formSchema = yup.object().shape({
-    name: yup
+    first_name: yup
         .string()
-        .required('You must enter your name'),
+        .trim()
+        .required('You must enter your first name'),
+    last_name: yup
+        .string()
+        .trim()
+        .required('You must enter your last name'),
     email: yup
         .string()
         .email('Must be a valid email address')

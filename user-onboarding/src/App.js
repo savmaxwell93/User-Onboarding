@@ -9,7 +9,8 @@ import User from './components/User'
 // Initial States
 const initialFormValues = {
   //Text Inputs
-  name: '',
+  first_name: '',
+  last_name: '',
   email: '',
   password: '',
   //Checkbox
@@ -17,10 +18,11 @@ const initialFormValues = {
 }
 
 const initialFormErrors = {
-  name: '',
+  first_name: '',
+  last_name: '',
   email: '',
   password: '',
-  terms: true,
+  terms: '',
 }
 
 const initialUsers = []
@@ -36,7 +38,12 @@ const [disabled, setDisabled] = useState(initialDisabled)
 
 // Helpers
 const getUsers = () => {
-
+  axios.get('https://reqres.in/api/users')
+    .then(res => {
+      console.log(res.data.data)
+      setUsers(res.data.data);
+    })
+    .catch(err => console.error(err))
 }
 
 const postNewUser = () => {
@@ -67,7 +74,7 @@ useEffect(() => {
 
   return (
     <div className='container'>
-      <header><h1>Form Title</h1></header>
+      <header><h1>Welcome Users!</h1></header>
       <Form 
         values={formValues}
         change={inputChange}
@@ -75,6 +82,7 @@ useEffect(() => {
         disabled={disabled}
         errors={formErrors}
       />
+      <h2>Current Users</h2>
       {
         users.map(user => {
           return (
