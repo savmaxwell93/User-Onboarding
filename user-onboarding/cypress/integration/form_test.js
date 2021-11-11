@@ -43,13 +43,38 @@ describe('Form App', () => {
 
     describe('Filling out the inputs', () => {
         //get name and type
+        it('can type in name inputs', () => {
+            firstNameInput()
+                .should('have.value', '')
+                .type('Savannah')
+                .should('have.value', 'Savannah');
+            lastNameInput()
+                .should('have.value', '')
+                .type('Maxwell')
+                .should('have.value', 'Maxwell');
+        })
         //get email and type
+        it('can type in email input', () => {
+            emailInput()
+                .should('have.value', '')
+                .type('sav@email.com')
+                .should('have.value', 'sav@email.com');
+        })
         //get password and type
+        it('can type in password input', () => {
+            passInput()
+                .should('have.value', '')
+                .type('password')
+                .should('have.value', 'password');
+        })
         //check TOS box
     })
 
     describe('Testing register button', () => {
         //button starts disabled
+        it('register button starts out disabled', () => {
+            registerBtn().should('be.disabled');
+        })
         //button enables when all inputs are filled out
         //can submit a new user
     })
