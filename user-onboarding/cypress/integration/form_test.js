@@ -9,7 +9,7 @@ describe('Form App', () => {
     const lastNameInput = () => cy.get('input[name=last_name]');
     const emailInput = () => cy.get('input[name=email]');
     const passInput = () => cy.get('input[name=password]');
-    const termsInput = () => cy.get('input[name=terms]');
+    const termsInput = () => cy.get('[type="checkbox"]');
     const registerBtn = () => cy.get('button[id="regBtn"]');
 
     const foobarInput = () => cy.get('input[name=foobar]');
@@ -68,6 +68,13 @@ describe('Form App', () => {
                 .should('have.value', 'password');
         })
         //check TOS box
+        it('can check and uncheck the TOS box', () => {
+            termsInput()
+                .click()
+                .should('be.checked')
+                .click()
+                .should('not.be.checked');
+        })
     })
 
     describe('Testing register button', () => {
@@ -76,7 +83,24 @@ describe('Form App', () => {
             registerBtn().should('be.disabled');
         })
         //button enables when all inputs are filled out
+        it('the register button enabled when all inputs are filled out', () => {
+            firstNameInput().type('Savannah');
+            lastNameInput().type('Maxwell');
+            emailInput().type('sav@email.com');
+            passInput().type('password');
+            termsInput().click();
+            registerBtn().should('not.be.disabled');
+        })
         //can submit a new user
+        it('can register a new user', () => {
+            firstNameInput().type('Savannah');
+            lastNameInput().type('Maxwell');
+            emailInput().type('sav@email.com');
+            passInput().type('password');
+            termsInput().click();
+            registerBtn().click();
+            cy.contains('Savannah Maxwell').should('exist');
+        })
     })
 
     
