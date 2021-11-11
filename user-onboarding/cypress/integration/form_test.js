@@ -103,7 +103,15 @@ describe('Form App', () => {
         })
     })
 
-    
+    describe('Testing form validation', () => {
+        //if first name is blank display error message
+        //if last name is blank display error message
+        //if email is invalid display error message
+        //if email is blank display error message
+        //if password is blank display error message
+        //if password is less that 8 chars display error message
+        //if TOS is unchecked display error message
+    })
 
 
 
